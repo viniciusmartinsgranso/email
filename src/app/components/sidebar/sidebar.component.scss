@@ -1,0 +1,34 @@
+:host {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+.sidebar {
+  position: relative;
+  width: 20vw;
+  background: var(--background-black);
+  padding: 2rem;
+  height: 85vh;
+  border-radius: 0 1rem 0 0;
+  border: 0.01rem dashed #755800;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  &--items {
+    gap: 2rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    border-bottom: 0.1rem solid white;
+
+    img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+}
