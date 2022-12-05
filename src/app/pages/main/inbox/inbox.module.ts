@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
+import { EmailItemModule } from '../../../components/email-item/email-item.module';
 
 import { InboxPageRoutingModule } from './inbox-routing.module';
 
@@ -13,7 +14,8 @@ import { InboxPage } from './inbox.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    InboxPageRoutingModule
+    InboxPageRoutingModule,
+    EmailItemModule,
   ],
   declarations: [InboxPage]
 })

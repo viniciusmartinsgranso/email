@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EmailProxy } from '../../../models/proxies/email.proxy';
 
 @Component({
   selector: 'app-archived',

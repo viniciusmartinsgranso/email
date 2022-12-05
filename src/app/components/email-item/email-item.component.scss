@@ -1,0 +1,20 @@
+.email-item {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+  border: 0.1rem solid #707070;
+  border-radius: 1rem;
+
+  img {
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+}
+
+.bar {
+  border-left: .1rem solid #707070;
+  height: 100%;
+}

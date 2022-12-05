@@ -44,31 +44,31 @@ export class SidebarComponent implements OnInit {
       type: SidebarEnum.INBOX,
       link: '/inbox',
       icon: 'assets/images/inbox.svg',
-      iconActivated: ''
+      iconActivated: 'assets/images/inbox-selected.svg'
     },
     {
       type: SidebarEnum.OUTBOX,
       link: '/outbox',
       icon: 'assets/images/outbox.svg',
-      iconActivated: ''
+      iconActivated: 'assets/images/outbox-selected.svg'
     },
     {
       type: SidebarEnum.FAVORITES,
       link: '/favorites',
       icon: 'assets/images/favorite.svg',
-      iconActivated: ''
+      iconActivated: 'assets/images/favorite-selected.svg'
     },
     {
       type: SidebarEnum.SPAM,
       link: '/spam',
       icon: 'assets/images/spam.svg',
-      iconActivated: ''
+      iconActivated: 'assets/images/spam-selected.svg'
     },
     {
       type: SidebarEnum.TRASH,
       link: '/trash',
       icon: 'assets/images/trash.svg',
-      iconActivated: ''
+      iconActivated: 'assets/images/trash-selected.svg'
     }
   ];
 

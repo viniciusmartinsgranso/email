@@ -1,0 +1,13 @@
+<div class="email-item">
+  <a (click)="email.isImportant = !email.isImportant">
+    <img [src]="email.isImportant ? 'assets/images/favorite-filled.svg' : 'assets/images/favorite.svg'">
+  </a>
+  <div class="bar"></div>
+  <p>{{ email.title }}</p>
+  <div class="bar"></div>
+  <p style="width: 90%;">{{ email.description }}</p>
+  <div class="bar"></div>
+  <a>
+    <img src="assets/images/trash.svg">
+  </a>
+</div>
