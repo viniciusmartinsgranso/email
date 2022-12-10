@@ -1,6 +1,6 @@
 <div class="sidebar">
-  <div class="sidebar--items" *ngFor="let item of sidebarList" [routerLink]="item.link">
+  <div class="sidebar--items" *ngFor="let item of sidebarList" [routerLink]="item.link" [class.yellow-border]="currentSidebar === item.type">
     <img [src]=" currentSidebar === item.type ? item.iconActivated : item.icon ">
-    <p>{{ translated[item.type] }}</p>
+    <p [class.orange]="currentSidebar === item.type">{{ translated[item.type] }}</p>
   </div>
 </div>

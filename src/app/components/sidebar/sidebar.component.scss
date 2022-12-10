@@ -25,10 +25,26 @@
     font-weight: bold;
     cursor: pointer;
     border-bottom: 0.1rem solid white;
+    transition: all ease-out 500ms;
 
     img {
       width: 2rem;
       height: 2rem;
     }
   }
+
+  &--items:hover {
+    border: .1rem solid var(--yellow-border);
+    padding: .3rem;
+    border-radius: .5rem;
+    transition: all ease-out 500ms;
+  }
+}
+
+.orange {
+  color: var(--yellow-border);
+}
+
+.yellow-border {
+  border-bottom: 0.1rem solid var(--yellow-border);
 }

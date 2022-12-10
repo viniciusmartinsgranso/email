@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { NavigationEnd, Router, RouterEvent } from '@angular/router';
 import { SidebarEnum, sidebarTranslated } from '../../models/enums/sidebar.enum';
 import { SidebarInterface } from '../../models/interfaces/sidebar.interface';
 import { filter } from 'rxjs/operators';
@@ -14,27 +14,29 @@ export class SidebarComponent implements OnInit {
   constructor(
     private readonly router: Router,
   ) {
-    // router.events
-    //   .pipe(filter((event) => event instanceof NavigationEnd))
-    //   .subscribe((route: NavigationEndroute) => {
-    //     if (route.url.includes('/inbox'))
-    //       this.currentSidebar = SidebarEnum.INBOX;
-    //
-    //     if (route.url.includes('/outbox'))
-    //       this.currentSidebar = SidebarEnum.OUTBOX;
-    //
-    //     if (route.url.includes('/favorites'))
-    //       this.currentSidebar = SidebarEnum.FAVORITES;
-    //
-    //     if (route.url.includes('/archived'))
-    //       this.currentSidebar = SidebarEnum.ARCHIVED;
-    //
-    //     if (route.url.includes('/spam'))
-    //       this.currentSidebar = SidebarEnum.SPAM;
-    //
-    //     if (route.url.includes('/trash'))
-    //       this.currentSidebar = SidebarEnum.TRASH;
-    //   });
+    router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe((route) => {
+        const routerEvent = route as NavigationEnd
+
+        if (routerEvent.url.includes('/inbox'))
+          this.currentSidebar = SidebarEnum.INBOX;
+
+        if (routerEvent.url.includes('/outbox'))
+          this.currentSidebar = SidebarEnum.OUTBOX;
+
+        if (routerEvent.url.includes('/favorites'))
+          this.currentSidebar = SidebarEnum.FAVORITES;
+
+        if (routerEvent.url.includes('/archived'))
+          this.currentSidebar = SidebarEnum.ARCHIVED;
+
+        if (routerEvent.url.includes('/spam'))
+          this.currentSidebar = SidebarEnum.SPAM;
+
+        if (routerEvent.url.includes('/trash'))
+          this.currentSidebar = SidebarEnum.TRASH;
+      });
   }
 
   public currentSidebar: SidebarEnum = SidebarEnum.ARCHIVED;
