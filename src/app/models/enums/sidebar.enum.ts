@@ -5,6 +5,7 @@ export enum SidebarEnum {
   ARCHIVED = 3,
   TRASH = 4,
   SPAM = 5,
+  CREATE = 6
 }
 
 export const sidebarTranslated: Record<SidebarEnum, string> = {
@@ -14,4 +15,5 @@ export const sidebarTranslated: Record<SidebarEnum, string> = {
   [SidebarEnum.FAVORITES]: 'Favoritos',
   [SidebarEnum.SPAM]: 'Spam',
   [SidebarEnum.TRASH]: 'Lixeira',
+  [SidebarEnum.CREATE]: 'Novo Email',
 }

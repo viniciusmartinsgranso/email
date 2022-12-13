@@ -35,6 +35,14 @@ const routes: Routes = [
     path: 'archived',
     loadChildren: () => import('./main/archived/archived.module').then( m => m.ArchivedPageModule)
   },
+  {
+    path: 'create',
+    loadChildren: () => import('./main/create/create.module').then( m => m.CreatePageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
 ];
 
 @NgModule({

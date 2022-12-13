@@ -1,0 +1,41 @@
+<div class="login">
+  <div class="login--border">
+    <ng-container *ngIf="!isRegister; else register">
+      <div class="login--border--login">
+
+        <div class="login--border--login--introduction">
+          <h3>Fazer Login</h3>
+          <h5>Realize o Login para entrar no Vinimail!</h5>
+        </div>
+
+        <div class="login--border--login--form">
+          <img src="assets/images/user-login-icon.svg">
+          <input class="login--border--login--form--email" type="text" placeholder="Insira seu e-mail aqui!">
+        </div>
+
+        <div class="login--border--login--form">
+          <img src="assets/images/user-password.svg">
+          <input class="login--border--login--form--email" [type]="showPassword ? 'text' : 'password'" placeholder="Insira sua senha aqui!">
+        </div>
+
+        <div class="border-bottom"></div>
+        <button class="login-button">Entrar</button>
+
+        <div>
+          <p>Ainda não faz parte da família Vinimail? Cadastre-se <a (click)="isRegister = !isRegister">aqui!</a></p>
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #register>
+
+      <div class="login--border--register">
+        <div class="login--border--register--home">
+          <img src="assets/images/back-arrow.svg" (click)="isRegister = !isRegister">
+          <h2>Vamos criar sua conta!</h2>
+        </div>
+        <div></div>
+      </div>
+
+    </ng-template>
+  </div>
+</div>

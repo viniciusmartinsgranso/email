@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { filter } from 'rxjs/operators';
@@ -13,25 +13,27 @@ export class AppComponent {
   constructor(
     private readonly router: Router,
   ) {
-    // this.routeSubscription = router.events
-    // .pipe(filter((event) => event instanceof NavigationEnd))
-    // .subscribe((route: NavigationEnd) => {
-    //   if (!this.routesWithoutNavbar.includes(route.url)) {
-    //     if (!this.routesWithoutNavbar.includes(route.urlAfterRedirects))
-    //       return this.canShowNavbar = true;
-    //   } else {
-    //     this.canShowNavbar = false;
-    //   }
-    // });
+    this.routeSubscription = router.events
+      .pipe(filter((event) => event instanceof NavigationEnd))
+      .subscribe( (route) => {
+      const routerEvent = route as NavigationEnd
+
+      if (!this.routesWithoutNavbar.includes(routerEvent.url)) {
+        if (!this.routesWithoutNavbar.includes(routerEvent.urlAfterRedirects))
+          this.canShowNavbar = true;
+      } else {
+        this.canShowNavbar = false;
+      }
+    });
   }
 
   public canShowNavbar: boolean = false;
 
-  public routesWithoutNavbar: string[] = ['/login', '/register'];
+  public routesWithoutNavbar: string[] = ['/login'];
 
-  // public routeSubscription: Subscription;
+  public routeSubscription: Subscription;
 
-  // public async ngOnDestroy(): Promise<void> {
-  //   this.routeSubscription.unsubscribe();
-  // }
+  public async ngOnDestroy(): Promise<void> {
+    this.routeSubscription.unsubscribe();
+  }
 }

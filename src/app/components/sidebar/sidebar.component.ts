@@ -36,6 +36,9 @@ export class SidebarComponent implements OnInit {
 
         if (routerEvent.url.includes('/trash'))
           this.currentSidebar = SidebarEnum.TRASH;
+
+        if (routerEvent.url.includes('/create'))
+          this.currentSidebar = SidebarEnum.CREATE;
       });
   }
 
@@ -71,6 +74,12 @@ export class SidebarComponent implements OnInit {
       link: '/trash',
       icon: 'assets/images/trash.svg',
       iconActivated: 'assets/images/trash-selected.svg'
+    },
+    {
+      type: SidebarEnum.CREATE,
+      link: '/create',
+      icon: 'assets/images/create.svg',
+      iconActivated: 'assets/images/create-selected.svg'
     }
   ];
 
