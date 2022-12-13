@@ -30,7 +30,6 @@
       align-items: center;
       justify-content: center;
       gap: 2rem;
-      transition: all ease-in-out 500ms;
 
       &--introduction {
         text-align: center;
@@ -67,9 +66,8 @@
     }
 
     &--register {
-      transition: all ease-in-out 500ms;
       width: 100%;
-      height: 100%;
+      height: auto;
 
       &--home {
         display: flex;
