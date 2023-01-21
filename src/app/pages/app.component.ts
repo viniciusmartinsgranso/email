@@ -29,7 +29,7 @@ export class AppComponent {
 
   public canShowNavbar: boolean = false;
 
-  public routesWithoutNavbar: string[] = ['/login'];
+  public routesWithoutNavbar: string[] = ['/login', '/pipokinha'];
 
   public routeSubscription: Subscription;
 

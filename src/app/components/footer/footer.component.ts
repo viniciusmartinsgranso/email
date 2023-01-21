@@ -17,7 +17,8 @@ export class FooterComponent implements OnInit {
     age: 20,
     photoUrl: 'assets/images/user.jpg',
     emailsPosted: [],
-    emailsReceived: []
+    emailsReceived: [],
+    phone: 1
   };
 
   ngOnInit() {}
