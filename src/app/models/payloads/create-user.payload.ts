@@ -2,8 +2,8 @@ export interface CreateUserPayload {
   name: string;
   email: string;
   password: string;
-  age: number;
-  phone: number;
+  age?: number;
+  phone: string;
 }
 
 export interface RegisterPayload extends CreateUserPayload {

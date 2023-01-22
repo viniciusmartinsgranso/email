@@ -1,0 +1,40 @@
+.alert-wrapper {
+  //{@link https://forum.ionicframework.com/t/cannot-dismiss-a-modal-by-clicking-the-backdrop-ionic-6/221459}
+  backdrop-filter: blur(0.1rem);
+  box-shadow: 0 0 9px 1px rgb(117 88 0 / 91%) !important;
+  border-radius: .5rem !important;
+}
+
+.alert-button {
+  color: white !important;
+  font-weight: bold !important;
+}
+
+.alert-title {
+  font-weight: bold;
+}
+
+#alert-1-hdr {
+  background: -webkit-linear-gradient(#eee, #ffca22);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+#alert-1-msg {
+  color: #dedede;
+}
+
+.toast-content {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.toast-wrapper {
+  --box-shadow: 0 0 9px 1px rgb(117 88 0 / 91%) !important;
+  border-radius: 0.5rem;
+  color: white;
+  --background: transparent;
+}
+

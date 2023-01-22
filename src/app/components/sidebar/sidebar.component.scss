@@ -17,7 +17,8 @@
   gap: 2rem;
 
   &--items {
-    gap: 2rem;
+    gap: 1rem;
+    padding: 0 0.5rem;
     width: 100%;
     display: flex;
     align-items: center;
@@ -34,17 +35,19 @@
   }
 
   &--items:hover {
-    border: .1rem solid var(--yellow-border);
+    border-bottom: .1rem solid var(--yellow-hover);
     padding: .3rem;
-    border-radius: .5rem;
     transition: all ease-out 500ms;
   }
 }
 
 .orange {
-  color: var(--yellow-border);
+  color: white;
 }
 
 .yellow-border {
-  border-bottom: 0.1rem solid var(--yellow-border);
+  border: none;
+  border-radius: 0.5rem;
+  background: transparent;
+  -webkit-box-shadow: 0 0 9px 1px rgb(218 164 0 / 91%);
 }

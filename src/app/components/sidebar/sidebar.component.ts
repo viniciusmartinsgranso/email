@@ -49,37 +49,37 @@ export class SidebarComponent implements OnInit {
       type: SidebarEnum.INBOX,
       link: '/inbox',
       icon: 'assets/images/inbox.svg',
-      iconActivated: 'assets/images/inbox-selected.svg'
+      iconActivated: 'assets/images/inbox.svg'
     },
     {
       type: SidebarEnum.OUTBOX,
       link: '/outbox',
       icon: 'assets/images/outbox.svg',
-      iconActivated: 'assets/images/outbox-selected.svg'
+      iconActivated: 'assets/images/outbox.svg'
     },
     {
       type: SidebarEnum.FAVORITES,
       link: '/favorites',
       icon: 'assets/images/favorite.svg',
-      iconActivated: 'assets/images/favorite-selected.svg'
+      iconActivated: 'assets/images/favorite.svg'
     },
     {
       type: SidebarEnum.SPAM,
       link: '/spam',
       icon: 'assets/images/spam.svg',
-      iconActivated: 'assets/images/spam-selected.svg'
+      iconActivated: 'assets/images/spam.svg'
     },
     {
       type: SidebarEnum.TRASH,
       link: '/trash',
       icon: 'assets/images/trash.svg',
-      iconActivated: 'assets/images/trash-selected.svg'
+      iconActivated: 'assets/images/trash.svg'
     },
     {
       type: SidebarEnum.CREATE,
       link: '/create',
       icon: 'assets/images/create.svg',
-      iconActivated: 'assets/images/create-selected.svg'
+      iconActivated: 'assets/images/create.svg'
     }
   ];
 
