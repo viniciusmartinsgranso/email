@@ -16,7 +16,7 @@
     border-radius: 1rem;
     width: 45vw;
     height: 70vh;
-    padding: 2rem;
+    padding: 4rem 2rem;
     transition: all ease-in-out 500ms;
     overflow: hidden;
 
@@ -154,18 +154,6 @@
   }
 }
 
-@keyframes fade {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: .5;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
 .border-bottom {
   border: .1rem solid var(--yellow-border);
   width: 100%;
@@ -184,4 +172,16 @@
 .disable {
   opacity: .3;
   pointer-events: none;
+}
+
+.error-span {
+  position: absolute;
+  top: -1rem;
+  color: red;
+  font-size: .8rem;
+}
+
+.error-email {
+  border: .1rem dashed red;
+  border-radius: .5rem;
 }

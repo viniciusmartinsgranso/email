@@ -16,14 +16,21 @@ export class UserService {
       password: '',
       email: '',
       age: undefined,
-      phone: ''
+      phone: '',
     },
   ];
+
+  public async get(): Promise<UserProxy> {
+    const user = localStorage.getItem('loggedUser');
+    return user ? JSON.parse(user) : false;
+  }
 
   public async create(user: RegisterPayload): Promise<void> {
     localStorage.removeItem('loggedUser');
     const table = localStorage.getItem('users');
     const storageUsers: RegisterPayload[] = table ? JSON.parse(table) : [];
+    user.email = user.email + '@vinimail.com';
+    user.confirmEmail = user.confirmEmail + '@vinimail.com';
 
     storageUsers.push(user);
     localStorage.setItem('users', JSON.stringify(storageUsers));
@@ -56,21 +63,21 @@ export class UserService {
   public async login(user: LoginPayload): Promise<boolean> {
     localStorage.removeItem('loggedUser');
     const table = localStorage.getItem('users');
-    const storage: LoginPayload[] = table ? JSON.parse(table) : [];
-    console.log(storage);
+    const storage: LoginPayload[] = table ? JSON.parse(table) : false;
+
+    if (!storage) return false;
 
     const loggedUser = storage.map(currentUser => {
       if (currentUser.email === user.email && currentUser.password === user.password) {
         return currentUser;
       } else return false;
     });
-    console.log(loggedUser);
 
-    if(loggedUser[0] === false) {
-      return false;
-    } else {
-      localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
-      return true;
-    }
+    localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+    return true;
+  }
+
+  public logoutUser(): void {
+    return localStorage.removeItem('loggedUser');
   }
 }

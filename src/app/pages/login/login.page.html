@@ -1,7 +1,7 @@
 <div class="login">
   <div class="login--border" #pai>
     <ng-container *ngIf="!isRegister; else register">
-      <div class="login--border--login" #loginDiv>
+      <div class="login--border--login">
 
         <div class="login--border--login--introduction">
           <h3>Fazer Login</h3>
@@ -31,12 +31,11 @@
     </ng-container>
 
     <ng-template #register>
-      <div class="login--border--register" #registerDiv>
+      <div class="login--border--register">
         <div class="login--border--register--home">
           <img src="assets/images/back-arrow.svg" (click)="isRegister = !isRegister; updateHeight()">
           <h2>Vamos criar sua conta!</h2>
         </div>
-        <div class="border-bottom"></div>
         <div class="login--border--register--form">
 
           <div class="login--border--login--form">
@@ -55,13 +54,15 @@
           </div>
 
           <div class="login--border--login--form">
+            <span class="error-span" *ngIf="autocompleteEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
-            <input #emailRegister class="login--border--login--form--email" (keydown.enter)="confirmEmailRegister.focus()" [(ngModel)]="registerPayload.email" type="text" placeholder="Insira seu e-mail aqui!">
+            <input #emailRegister class="login--border--login--form--email" [class.error-email]="autocompleteEmail" (keydown.enter)="confirmEmailRegister.focus()" (ngModelChange)="verifyAt($event)" [ngModel]="registerPayload.email" type="text" placeholder="Insira seu e-mail aqui!">
           </div>
 
           <div class="login--border--login--form">
+            <span class="error-span" *ngIf="autocompleteConfirmEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
-            <input #confirmEmailRegister (keydown.enter)="passwordRegister.focus()" class="login--border--login--form--email" [(ngModel)]="registerPayload.confirmEmail" type="text" placeholder="Confirme seu e-mail aqui!">
+            <input #confirmEmailRegister (keydown.enter)="passwordRegister.focus()" class="login--border--login--form--email" (ngModelChange)="verifyConfirmAt($event)" [ngModel]="registerPayload.confirmEmail" type="text" placeholder="Confirme seu e-mail aqui!">
           </div>
 
           <div class="login--border--login--form">

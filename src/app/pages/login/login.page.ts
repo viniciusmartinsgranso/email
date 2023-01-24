@@ -39,6 +39,10 @@ export class LoginPage implements OnInit {
 
   public isLoading: boolean = false;
 
+  public autocompleteEmail: boolean = false;
+
+  public autocompleteConfirmEmail: boolean = false;
+
   public registerPayload: RegisterPayload = {
     id: 0,
     name: '',
@@ -61,7 +65,7 @@ export class LoginPage implements OnInit {
   }
 
   public canRegister(): boolean {
-    return isValidEmail(this.registerPayload.email && this.registerPayload.confirmEmail)
+    return !this.autocompleteEmail && !this.autocompleteConfirmEmail
       && this.registerPayload.email === this.registerPayload.confirmEmail
       && isValidPassword(this.registerPayload.password && this.registerPayload.confirmPassword)
       && this.registerPayload.password === this.registerPayload.confirmPassword
@@ -69,8 +73,9 @@ export class LoginPage implements OnInit {
   }
 
   public async login(user: LoginPayload): Promise<void> {
+    console.log(user);
     const response = await this.userService.login(user);
-    console.log(response);
+
     if (!response) {
       await this.helperService.createAlert('Oopss...', 'Usuário ou senha incorretos, tente novamente!', ['Entendido']);
     } else {
@@ -80,6 +85,7 @@ export class LoginPage implements OnInit {
   }
 
   public async registerUser(user: RegisterPayload): Promise<void> {
+    console.log(user);
     await this.userService.create(user);
 
     await this.helperService.createToast('Bem vindo ao Vinimail!', 'bottom');
@@ -108,6 +114,17 @@ export class LoginPage implements OnInit {
     const deveTerTracinho = phone.length >= 9;
     this.registerPayload.phone = phone.replace(/\D/g, '')
       .replace(/^([1-9]{1,2})([1-9]{0,5})([1-9]{0,4})/, deveTerTracinho ? '($1)$2-$3' : '($1)$2');
+  }
+
+  public verifyAt(email: string): void {
+    email.includes('@') ? this.autocompleteEmail = true : this.autocompleteEmail = false;
+    this.registerPayload.email = email;
+  }
+
+  public verifyConfirmAt(email: string): void {
+    console.log(email);
+    email.includes('@') ? this.autocompleteConfirmEmail = true : this.autocompleteConfirmEmail = false;
+    this.registerPayload.confirmEmail = email;
   }
 
 }

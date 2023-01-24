@@ -1,15 +1,26 @@
 <div class="footer">
   <h3>Vinimail.com.br</h3>
   <div class="footer--images">
-    <a href="https://github.com/viniciusmartinsgranso" target="_blank" rel="noopener noreferrer">
+    <a id="github" href="https://github.com/viniciusmartinsgranso" target="_blank" rel="noopener noreferrer">
       <img src="assets/images/github.svg">
     </a>
-    <a href="https://www.linkedin.com/in/vinicius-martins-granso/" target="_blank" rel="noopener noreferrer">
+    <a id="linkedin" href="https://www.linkedin.com/in/vinicius-martins-granso/" target="_blank" rel="noopener noreferrer">
       <img src="assets/images/linkedin.svg">
     </a>
   </div>
-  <div class="footer--user">
-    <img [src]="user.photoUrl">
+
+  <a class="footer--user" (click)="toggle = !toggle">
+    <img [class.rotate-user]="toggle" [src]="user.photoUrl ? user.photoUrl : 'assets/images/user.jpg'">
     <p>{{ user.name }}</p>
-  </div>
+  </a>
+  <ng-container *ngIf="toggle">
+    <div class="user-modal" [class.retire-modal]="!toggle">
+      <p>Email: {{ user.email }}</p>
+      <p>Idade: {{ user.age }}</p>
+      <p>Telefone: {{ user.phone }}</p>
+      <div class="user-modal--buttons">
+        <button (click)="editProfileModal()">Editar perfil</button>
+        <button (click)="logoutUser()">Deslogar</button></div>
+    </div>
+  </ng-container>
 </div>

@@ -14,7 +14,7 @@ export class HelperService {
   public async createToast(message: string, position: 'top' | 'bottom' | 'middle', duration?: number): Promise<void> {
     const toast = await this.toast.create({
       message: message,
-      duration: duration ? duration : 90000000,
+      duration: duration ? duration : 1000,
       position: position,
       mode: 'md',
       cssClass: ['toast-content', 'toast-wrapper']
