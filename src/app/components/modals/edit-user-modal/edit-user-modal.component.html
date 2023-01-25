@@ -1,3 +1,19 @@
 <div class="edit-user">
-<h3>Vamos editar seu perfil!</h3>
+  <h3 class="edit-user--title">Vamos editar seu perfil!</h3>
+  <a (click)="closeModal()">
+    <p class="edit-user--exit">X</p>
+  </a>
+  <div class="edit-user--form">
+
+    <div class="edit-user--form--inp">
+      <span class="error-span" *ngIf="autocompleteEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
+      <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
+      <input class="login--border--login--form--email" type="text" placeholder="Insira seu e-mail aqui!" [class.error-email]="autocompleteEmail" >
+    </div>
+
+    <div class="edit-user--form--inp">
+      <img>
+      <input type="text" placeholder="">
+    </div>
+  </div>
 </div>

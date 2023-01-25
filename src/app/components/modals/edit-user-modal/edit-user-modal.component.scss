@@ -10,4 +10,16 @@
   width: 100%;
   height: 100%;
   padding: 2rem;
+  position: relative;
+
+  &--title {
+    text-align: center;
+  }
+  &--exit {
+    position: absolute;
+    right: 2rem;
+    top: 0;
+    cursor: pointer;
+    color: white;
+  }
 }

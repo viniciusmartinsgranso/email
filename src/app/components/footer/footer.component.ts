@@ -20,7 +20,7 @@ export class FooterComponent implements OnInit {
 
   public user: UserProxy = {
     id: 0,
-    name: 'Vini',
+    name: '',
     email: 'vini@email.com',
     age: 20,
     photoUrl: 'assets/images/user.jpg',
@@ -39,7 +39,7 @@ export class FooterComponent implements OnInit {
     const modal = await this.modalController.create({
       mode: 'md',
       component: EditUserModalComponent,
-      cssClass: 'background-blur'
+      cssClass: 'background-blur',
     });
     await modal.present();
   }
