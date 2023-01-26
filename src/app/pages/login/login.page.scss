@@ -51,6 +51,16 @@
         display: flex;
         align-items: center;
 
+        &--span {
+          position: absolute;
+          top: -0.5rem;
+          color: white;
+          font-size: 0.8rem;
+          background: var(--background-black);
+          left: 1rem;
+          padding: 0 0.5rem;
+        }
+
         &--img {
           position: absolute;
           left: .7rem;
@@ -117,6 +127,16 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+
+        &--span {
+          position: absolute;
+          top: -0.5rem;
+          color: white;
+          font-size: 0.8rem;
+          background: var(--background-black);
+          left: 1rem;
+          padding: 0 0.5rem;
+        }
       }
     }
   }

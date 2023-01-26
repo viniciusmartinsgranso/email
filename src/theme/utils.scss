@@ -83,7 +83,7 @@
 .error-span {
   position: absolute;
   top: -0.5rem;
-  color: red;
+  color: red !important;
   font-size: 0.8rem;
   background: #111111;
   left: 1rem;

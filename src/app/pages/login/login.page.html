@@ -9,11 +9,13 @@
         </div>
 
         <div class="login--border--login--form">
+          <span class="login--border--login--form--span">Insira seu e-mail aqui!</span>
           <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
           <input class="login--border--login--form--email" (keydown.enter)="loginPassword.focus()" [(ngModel)]="loginPayload.email" type="text" placeholder="Insira seu e-mail aqui!">
         </div>
 
         <div class="login--border--login--form">
+          <span class="login--border--login--form--span">Insira sua senha aqui!</span>
           <img class="login--border--login--form--img" src="assets/images/user-password.svg">
           <input #loginPassword (keydown.enter)="login(this.loginPayload)" class="login--border--login--form--email" [(ngModel)]="loginPayload.password" [type]="showPasswordLogin ? 'text' : 'password'" placeholder="Insira sua senha aqui!">
           <button class="login--border--login--form--email--eye" (click)="showPasswordLogin = !showPasswordLogin">
@@ -39,33 +41,37 @@
         <div class="login--border--register--form">
 
           <div class="login--border--login--form">
+            <span class="login--border--login--form--span">Insira seu nome aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
             <input class="login--border--login--form--email" (keydown.enter)="age.focus()" [(ngModel)]="registerPayload.name" type="text" placeholder="Insira seu nome aqui!">
           </div>
 
           <div class="login--border--login--form">
+            <span class="login--border--login--form--span">Insira sua idade aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
             <input class="login--border--login--form--email" #age (keydown.enter)="phone.focus()" [(ngModel)]="registerPayload.age" type="number" placeholder="Insira sua idade aqui!">
           </div>
 
           <div class="login--border--login--form">
+            <span class="login--border--login--form--span">Insira seu telefone aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
             <input #phone class="login--border--login--form--email" (keydown.enter)="emailRegister.focus()" [ngModel]="registerPayload.phone" (ngModelChange)="applyMask($event)" maxlength="14" type="text" placeholder="Insira seu telefone aqui!">
           </div>
 
           <div class="login--border--login--form">
-            <span class="error-span" *ngIf="autocompleteEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
+            <span class="login--border--login--form--span" [class.error-span]="autocompleteEmail">{{ autocompleteEmail ? 'Oopss... Não complete o @ do email! Nós fazemos isso por você!' : 'Insira seu e-mail aqui!' }}</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
             <input #emailRegister class="login--border--login--form--email" [class.error-email]="autocompleteEmail" (keydown.enter)="confirmEmailRegister.focus()" (ngModelChange)="verifyAt($event)" [ngModel]="registerPayload.email" type="text" placeholder="Insira seu e-mail aqui!">
           </div>
 
           <div class="login--border--login--form">
-            <span class="error-span" *ngIf="autocompleteConfirmEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
+            <span class="login--border--login--form--span" [class.error-span]="autocompleteConfirmEmail">{{ autocompleteConfirmEmail ? 'Oopss... Não complete o @ do email! Nós fazemos isso por você!' : 'Confirme seu e-mail aqui!' }}</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
             <input #confirmEmailRegister (keydown.enter)="passwordRegister.focus()" class="login--border--login--form--email" (ngModelChange)="verifyConfirmAt($event)" [ngModel]="registerPayload.confirmEmail" type="text" placeholder="Confirme seu e-mail aqui!">
           </div>
 
           <div class="login--border--login--form">
+            <span class="login--border--login--form--span">Insira sua senha aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-password.svg">
             <input #passwordRegister (keydown.enter)="confirmPasswordRegister.focus()" class="login--border--login--form--email" [(ngModel)]="registerPayload.password" [type]="showPasswordRegister ? 'text' : 'password'" placeholder="Insira sua senha aqui!">
             <button class="login--border--login--form--email--eye" (click)="showPasswordRegister = !showPasswordRegister">
@@ -74,6 +80,7 @@
           </div>
 
           <div class="login--border--login--form">
+            <span class="login--border--login--form--span">Confirme sua senha aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-password.svg">
             <input #confirmPasswordRegister (keydown.enter)="registerUser(this.registerPayload)" class="login--border--login--form--email" [(ngModel)]="registerPayload.confirmPassword" [type]="showPasswordRegisterConfirm ? 'text' : 'password'" placeholder="Confirme sua senha aqui!">
             <button class="login--border--login--form--email--eye" (click)="showPasswordRegisterConfirm = !showPasswordRegisterConfirm">
