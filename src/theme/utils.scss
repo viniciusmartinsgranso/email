@@ -35,7 +35,7 @@
   --box-shadow: 0 0 9px 1px rgb(117 88 0 / 91%) !important;
   border-radius: 0.5rem;
   color: white;
-  --background: transparent;
+  --background: #111111;
 }
 
 .background-blur {
@@ -80,3 +80,15 @@
   }
 }
 
+.error-span {
+  position: absolute;
+  top: -0.5rem;
+  color: red;
+  font-size: 0.8rem;
+  background: #111111;
+  left: 1rem;
+}
+
+.error-email {
+  border: .1rem dashed red !important;
+}

@@ -13,5 +13,8 @@ import { EditUserModalComponent } from './edit-user-modal.component';
   declarations: [
     EditUserModalComponent
   ],
+  exports: [
+    EditUserModalComponent
+  ]
 })
 export class EditUserModalModule { }

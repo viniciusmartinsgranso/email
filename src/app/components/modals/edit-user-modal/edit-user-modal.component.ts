@@ -1,7 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ModalController } from '@ionic/angular';
 import { UpdateUserPayload } from '../../../models/payloads/update-user.payload';
-import { UserProxy } from '../../../models/proxies/user.proxy';
+import { HelperService } from '../../../services/helper.service';
 import { UserService } from '../../../services/user.service';
 
 @Component({
@@ -14,8 +15,10 @@ export class EditUserModalComponent implements OnInit {
   constructor(
     private readonly userService: UserService,
     private readonly modalController: ModalController,
+    private readonly helperService: HelperService,
+    private readonly router: Router,
   ) {
-    console.log(this.user);
+    this.getUser().then();
   }
 
   public autocompleteEmail: boolean = false;
@@ -24,19 +27,28 @@ export class EditUserModalComponent implements OnInit {
 
   public user: UpdateUserPayload = {
     id: 0,
-    name: 'Vini',
-    email: 'vini@email.com',
+    name: '',
+    email: '',
     age: 0,
-    photoUrl: 'assets/images/user.jpg',
+    photoUrl: '',
     phone: '',
     password: '',
     confirmPassword: ''
   };
+  public showPasswordRegister: boolean = false;
+
+  public showPasswordRegisterConfirm: boolean = false;
 
   ngOnInit() {}
 
   public async closeModal(): Promise<void> {
     return void await this.modalController.dismiss();
+  }
+
+  public async getUser(): Promise<void> {
+    const user = localStorage.getItem('loggedUser');
+    this.user = user ? JSON.parse(user) : false;
+    this.user.email = this.user.email?.replace("@vinimail.com", "");
   }
 
   public verifyAt(email: any): void {
@@ -45,9 +57,30 @@ export class EditUserModalComponent implements OnInit {
     console.log(this.user.email);
   }
 
+  public phoneMask(phone: string): void {
+    const deveTerTracinho = phone.length >= 9;
+    this.user.phone = phone.replace(/\D/g, '')
+      .replace(/^([1-9]{1,2})([1-9]{0,5})([1-9]{0,4})/, deveTerTracinho ? '($1)$2-$3' : '($1)$2');
+  }
+
   public fillEmail(element: any): void {
     this.user.email = element.value;
     console.log(this.user.email);
+  }
+
+  public async updateUser(user: UpdateUserPayload): Promise<void> {
+    this.userService.update(user)
+    await this.helperService.createAlert('Perfil atualizado com sucesso!', 'Parabéns!\nSeu perfil foi atualizado com sucesso!', ['Entendido!']);
+    await this.modalController.dismiss();
+    location.reload();
+  }
+
+  public async deleteUser(user: UpdateUserPayload): Promise<void> {
+    await this.helperService.deleteUser('Ooopss...!', 'Tem certeza que deseja deletar a sua conta?', user);
+  }
+
+  public deleteStorage(): void {
+    localStorage.clear();
   }
 
 }

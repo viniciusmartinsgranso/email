@@ -1,19 +1,56 @@
 <div class="edit-user">
-  <h3 class="edit-user--title">Vamos editar seu perfil!</h3>
+  <h2 class="edit-user--title">Vamos editar seu perfil!</h2>
   <a (click)="closeModal()">
     <p class="edit-user--exit">X</p>
   </a>
   <div class="edit-user--form">
 
     <div class="edit-user--form--inp">
-      <span class="error-span" *ngIf="autocompleteEmail">Oopss... Não complete o @ do email! Nós fazemos isso por você!</span>
-      <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
-      <input class="login--border--login--form--email" type="text" placeholder="Insira seu e-mail aqui!" [class.error-email]="autocompleteEmail" >
+      <span>Modifique seu nome!</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-login-icon.svg">
+      <input class="edit-user--form--inp--input" [(ngModel)]="user.name" placeholder="Modifique seu nome!">
     </div>
 
     <div class="edit-user--form--inp">
-      <img>
-      <input type="text" placeholder="">
+      <span [class.error-span]="autocompleteEmail" >{{ autocompleteEmail ? 'Oopss... Não complete o @ do email! Nós fazemos isso por você!' : 'Insira seu e-mail!' }}</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-login-icon.svg">
+      <input class="edit-user--form--inp--input" [ngModel]="user.email" (ngModelChange)="verifyAt($event)" placeholder="Insira seu e-mail!" [class.error-email]="autocompleteEmail" >
     </div>
+
+    <div class="edit-user--form--inp">
+      <span>Modifique sua idade!</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-login-icon.svg">
+      <input class="edit-user--form--inp--input" [(ngModel)]="user.age" placeholder="Modifique sua idade!">
+    </div>
+
+    <div class="edit-user--form--inp">
+      <span>Modifique seu telefone!</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-login-icon.svg">
+      <input class="edit-user--form--inp--input" [ngModel]="user.phone" (ngModelChange)="phoneMask($event)" maxlength="14" placeholder="Modifique seu telefone!">
+    </div>
+
+    <div class="edit-user--form--inp">
+      <span>Modifique sua senha!</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-password.svg">
+      <input class="edit-user--form--inp--input" [type]="showPasswordRegister ? 'text' : 'password'" [(ngModel)]="user.password" placeholder="Modifique sua senha!">
+      <button class="edit-user--form--inp--input--eye" (click)="showPasswordRegister = !showPasswordRegister">
+        <img [src]="showPasswordRegister ? 'assets/images/eye-off_icon.svg' : 'assets/images/eye_icon.svg'">
+      </button>
+    </div>
+
+    <div class="edit-user--form--inp">
+      <span>Confirme sua senha!</span>
+      <img class="edit-user--form--inp--img" src="assets/images/user-password.svg">
+      <input class="edit-user--form--inp--input" [type]="showPasswordRegisterConfirm ? 'text' : 'password'" [(ngModel)]="user.confirmPassword" placeholder="Confirme sua senha!">
+      <button class="edit-user--form--inp--input--eye" (click)="showPasswordRegisterConfirm = !showPasswordRegisterConfirm">
+        <img [src]="showPasswordRegisterConfirm ? 'assets/images/eye-off_icon.svg' : 'assets/images/eye_icon.svg'">
+      </button>
+    </div>
+
+    <div class="edit-user--form--btn">
+      <button class="edit-user--form--btn--submit" (click)="updateUser(user)">Atualizar</button>
+      <button class="edit-user--form--btn--delete" (click)="deleteUser(user)">Deletar</button>
+    </div>
+
   </div>
 </div>

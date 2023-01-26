@@ -3,7 +3,6 @@ import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { filter } from 'rxjs/operators';
-import { UserProxy } from '../models/proxies/user.proxy';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -35,7 +34,7 @@ export class AppComponent {
 
   public canShowNavbar: boolean = false;
 
-  public routesWithoutNavbar: string[] = ['/login'];
+  public routesWithoutNavbar: string[] = ['/login', '/login#login'];
 
   public routeSubscription: Subscription;
 

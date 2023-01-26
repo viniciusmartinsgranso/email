@@ -73,7 +73,6 @@ export class LoginPage implements OnInit {
   }
 
   public async login(user: LoginPayload): Promise<void> {
-    console.log(user);
     const response = await this.userService.login(user);
 
     if (!response) {

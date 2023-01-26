@@ -5,7 +5,7 @@ export interface UserProxy {
   name: string;
   email: string;
   age: number;
-  phone: number;
+  phone: string;
   emailsPosted: EmailProxy[];
   emailsReceived: EmailProxy[];
   photoUrl: string;

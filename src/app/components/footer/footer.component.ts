@@ -26,7 +26,7 @@ export class FooterComponent implements OnInit {
     photoUrl: 'assets/images/user.jpg',
     emailsPosted: [],
     emailsReceived: [],
-    phone: 1
+    phone: ''
   };
 
   public toggle: boolean = false;
@@ -46,7 +46,7 @@ export class FooterComponent implements OnInit {
 
   public async logoutUser(): Promise<void> {
     this.userService.logoutUser();
-    return void await this.router.navigateByUrl('/login');
+    return void await this.router.navigateByUrl('/login#login');
   }
 
 }

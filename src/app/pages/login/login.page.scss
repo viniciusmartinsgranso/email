@@ -16,9 +16,8 @@
     border-radius: 1rem;
     width: 45vw;
     height: 70vh;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
     transition: all ease-in-out 500ms;
-    overflow: hidden;
 
     background: var(--background-black);
     -webkit-box-shadow: 0 0 9px 1px rgba(117, 88, 0, 0.91);
@@ -31,7 +30,7 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 2rem;
+      gap: 1.5rem;
       animation: fade 700ms;
 
       &--introduction {
@@ -177,16 +176,4 @@
 .disable {
   opacity: .3;
   pointer-events: none;
-}
-
-.error-span {
-  position: absolute;
-  top: -1rem;
-  color: red;
-  font-size: .8rem;
-}
-
-.error-email {
-  border: .1rem dashed red;
-  border-radius: .5rem;
 }

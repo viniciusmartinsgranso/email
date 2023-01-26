@@ -9,6 +9,6 @@ export const usersMock: UserProxy[] = [
     emailsReceived: [],
     emailsPosted: [],
     photoUrl: '',
-    phone: 1
+    phone: ''
   }
 ]

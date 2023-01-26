@@ -26,3 +26,11 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 @import "theme/utils.scss";
+
+*::-webkit-scrollbar {
+  width: .3rem;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: #707070;    /* color of the scroll thumb */
+  border-radius: 1rem;       /* roundness of the scroll thumb */
+}

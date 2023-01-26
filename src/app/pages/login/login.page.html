@@ -1,7 +1,7 @@
 <div class="login">
   <div class="login--border" #pai>
     <ng-container *ngIf="!isRegister; else register">
-      <div class="login--border--login">
+      <div class="login--border--login" id="login">
 
         <div class="login--border--login--introduction">
           <h3>Fazer Login</h3>
@@ -45,7 +45,7 @@
 
           <div class="login--border--login--form">
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">
-            <input class="login--border--login--form--email" #age (keydown.enter)="phone.focus()" [(ngModel)]="registerPayload.age" type="text" placeholder="Insira sua idade aqui!">
+            <input class="login--border--login--form--email" #age (keydown.enter)="phone.focus()" [(ngModel)]="registerPayload.age" type="number" placeholder="Insira sua idade aqui!">
           </div>
 
           <div class="login--border--login--form">
