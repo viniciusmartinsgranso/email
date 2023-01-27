@@ -76,9 +76,16 @@ export class LoginPage implements OnInit {
     const response = await this.userService.login(user);
 
     if (!response) {
-      await this.helperService.createAlert('Oopss...', 'Usuário ou senha incorretos, tente novamente!', ['Entendido']);
+      await this.helperService.createAlert({
+        header: 'Oopss...',
+        message: 'Usuário ou senha incorretos, tente novamente!',
+        buttons: ['Entendido']
+      });
     } else {
-      await this.helperService.createToast('Logado com sucesso! Aproveite o Vinimail!', 'bottom');
+      await this.helperService.createToast({
+        message: 'Logado com sucesso! Aproveite o Vinimail!',
+        position: 'bottom'
+      });
       await this.router.navigateByUrl('/outbox');
     }
   }
@@ -87,7 +94,10 @@ export class LoginPage implements OnInit {
     console.log(user);
     await this.userService.create(user);
 
-    await this.helperService.createToast('Bem vindo ao Vinimail!', 'bottom');
+    await this.helperService.createToast({
+      message: 'Bem vindo ao Vinimail!',
+      position: 'bottom'
+    });
     await this.router.navigateByUrl('/outbox');
   }
 

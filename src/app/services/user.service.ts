@@ -1,15 +1,23 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
+import { AlertOptionsInterface } from '../models/interfaces/alert-options.interface';
 import { CreateUserPayload, RegisterPayload } from '../models/payloads/create-user.payload';
 import { LoginPayload } from '../models/payloads/login.payload';
 import { UpdateUserPayload } from '../models/payloads/update-user.payload';
 import { UserProxy } from '../models/proxies/user.proxy';
+import { HelperService } from './helper.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
 
-  constructor() {}
+  constructor(
+    private readonly modalController: ModalController,
+    private readonly helperService: HelperService,
+    private readonly router: Router,
+  ) {}
 
   public user: CreateUserPayload[] = [
     {
@@ -77,9 +85,39 @@ export class UserService {
       } else return false;
     });
 
+    console.log(newList);
     storage.push(...newList);
     localStorage.setItem('users', JSON.stringify(newList));
     localStorage.removeItem('loggedUser');
+  }
+
+  public async deleteUser(options: AlertOptionsInterface, user: UpdateUserPayload): Promise<void> {
+    await this.helperService.createAlert({
+      header: options.header,
+      message: options.message,
+      cssClass: ['alert-wrapper', 'alert-title', 'alert-1-msg', 'alert-button'],
+      buttons: [
+        {
+          text: 'Deseja realmente excluir sua conta?',
+          handler: async () => {
+            await this.delete(user.id);
+            await this.modalController.dismiss();
+            await this.router.navigateByUrl('/login#login');
+            setTimeout(async () => {
+
+              await this.helperService.createToast({
+                message: 'Usuário deletado com sucesso',
+                position: 'bottom',
+                duration: 2000,
+              });
+            }, 500);
+          },
+        },
+        {
+          text: 'Não! Cliquei sem querer hehe',
+        },
+      ],
+    });
   }
 
   public async login(user: LoginPayload): Promise<boolean> {
@@ -87,6 +125,7 @@ export class UserService {
     const table = localStorage.getItem('users');
     const storage: LoginPayload[] = table ? JSON.parse(table) : false;
 
+    console.log(storage);
     if (!storage.length) return false;
 
     const loggedUser = storage.map(currentUser => {
@@ -95,6 +134,8 @@ export class UserService {
       } else return [];
     });
 
+    console.log(loggedUser.length);
+    console.log(loggedUser);
     if (!loggedUser.length) return false;
 
     localStorage.setItem('loggedUser', JSON.stringify(loggedUser));

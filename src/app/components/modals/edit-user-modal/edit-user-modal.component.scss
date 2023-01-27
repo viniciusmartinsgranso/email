@@ -98,6 +98,16 @@
         border-radius: 0.5rem;
         background: transparent;
       }
+
+      &--storage {
+        width: 100%;
+        border: 0.1rem solid blue;
+        padding: 1rem 0;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        background: transparent;
+      }
     }
   }
 }

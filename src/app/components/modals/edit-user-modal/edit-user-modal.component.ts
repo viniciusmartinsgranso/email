@@ -69,14 +69,22 @@ export class EditUserModalComponent implements OnInit {
   }
 
   public async updateUser(user: UpdateUserPayload): Promise<void> {
-    this.userService.update(user)
-    await this.helperService.createAlert('Perfil atualizado com sucesso!', 'Parabéns!\nSeu perfil foi atualizado com sucesso!', ['Entendido!']);
+    this.userService.update(user);
+    await this.helperService.createAlert({
+      header: 'Perfil atualizado com sucesso!',
+      message: 'Parabéns!\\nSeu perfil foi atualizado com sucesso!',
+      buttons: ['Entendido!'],
+    });
+    // await this.helperService.createAlert('Perfil atualizado com sucesso!', 'Parabéns!\nSeu perfil foi atualizado com sucesso!', ['Entendido!']);
     await this.modalController.dismiss();
     location.reload();
   }
 
   public async deleteUser(user: UpdateUserPayload): Promise<void> {
-    await this.helperService.deleteUser('Ooopss...!', 'Tem certeza que deseja deletar a sua conta?', user);
+    await this.userService.deleteUser({
+      message: 'Iremos excluir sua conta, tem certeza disso?',
+      header: 'Atenção!',
+    }, user);
   }
 
   public deleteStorage(): void {
