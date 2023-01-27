@@ -92,6 +92,10 @@
   animation: rotate-user-animation 2s;
 }
 
+.back-user {
+  animation: back-user-animation 2s;
+}
+
 @keyframes rotate-user-animation {
   0% {
     transform: rotate(0deg);
@@ -104,6 +108,22 @@
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@keyframes back-user-animation {
+  0% {
+    transform: rotate(360deg);
+  }
+  50% {
+    transform: rotate(300deg);
+  }
+  75% {
+    transform: rotate(410deg);
+  }
+  100% {
+
+    transform: rotate(0deg);
   }
 }
 

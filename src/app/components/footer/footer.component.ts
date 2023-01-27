@@ -31,6 +31,8 @@ export class FooterComponent implements OnInit {
 
   public toggle: boolean = false;
 
+  public wasOpened: boolean = false;
+
   public async ngOnInit(): Promise<void> {
     this.user = await this.userService.get();
   }

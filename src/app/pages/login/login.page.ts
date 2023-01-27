@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { CreateUserPayload, RegisterPayload } from '../../models/payloads/create-user.payload';
+import { RegisterPayload } from '../../models/payloads/create-user.payload';
 import { LoginPayload } from '../../models/payloads/login.payload';
 import { HelperService } from '../../services/helper.service';
 import { UserService } from '../../services/user.service';
@@ -13,7 +13,7 @@ import isValidPassword = CustomValidators.isValidPassword;
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage {
 
   constructor(
     private readonly userService: UserService,
@@ -24,8 +24,8 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  @ViewChild('pai')
-  public pai?: ElementRef<HTMLDivElement>;
+  @ViewChild('borderPage')
+  public borderPage?: ElementRef<HTMLDivElement>;
 
   public isRegister: boolean = false;
 
@@ -74,6 +74,7 @@ export class LoginPage implements OnInit {
 
   public async login(user: LoginPayload): Promise<void> {
     const response = await this.userService.login(user);
+    console.log(response);
 
     if (!response) {
       await this.helperService.createAlert({
@@ -91,7 +92,6 @@ export class LoginPage implements OnInit {
   }
 
   public async registerUser(user: RegisterPayload): Promise<void> {
-    console.log(user);
     await this.userService.create(user);
 
     await this.helperService.createToast({
@@ -103,8 +103,8 @@ export class LoginPage implements OnInit {
 
   public updateHeight(): void {
     const delay = 0;
-    if (this.pai?.nativeElement) {
-      const el = this.pai.nativeElement;
+    if (this.borderPage?.nativeElement) {
+      const el = this.borderPage.nativeElement;
       setTimeout(() => {
 
         const prevHeight = el.style.height;
@@ -131,9 +131,7 @@ export class LoginPage implements OnInit {
   }
 
   public verifyConfirmAt(email: string): void {
-    console.log(email);
-    email.includes('@') ? this.autocompleteConfirmEmail = true : this.autocompleteConfirmEmail = false;
-    this.registerPayload.confirmEmail = email;
+    this.autocompleteConfirmEmail = email.includes('@');
   }
 
 }

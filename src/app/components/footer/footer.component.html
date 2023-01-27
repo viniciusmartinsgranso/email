@@ -9,8 +9,8 @@
     </a>
   </div>
 
-  <a class="footer--user" (click)="toggle = !toggle">
-    <img [class.rotate-user]="toggle" [src]="user.photoUrl ? user.photoUrl : 'assets/images/user.jpg'">
+  <a class="footer--user" (click)="toggle = !toggle; wasOpened = true">
+    <img [class.rotate-user]="toggle" [class.back-user]="!toggle && wasOpened" [src]="user.photoUrl ? user.photoUrl : 'assets/images/user.jpg'">
     <p>{{ user.name }}</p>
   </a>
   <ng-container *ngIf="toggle">

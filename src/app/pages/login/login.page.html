@@ -1,5 +1,5 @@
 <div class="login">
-  <div class="login--border" #pai>
+  <div class="login--border" #borderPage>
     <ng-container *ngIf="!isRegister; else register">
       <div class="login--border--login" id="login">
 
@@ -34,12 +34,13 @@
 
     <ng-template #register>
       <div class="login--border--register">
+
         <div class="login--border--register--home">
           <img src="assets/images/back-arrow.svg" (click)="isRegister = !isRegister; updateHeight()">
           <h2>Vamos criar sua conta!</h2>
         </div>
-        <div class="login--border--register--form">
 
+        <div class="login--border--register--form">
           <div class="login--border--login--form">
             <span class="login--border--login--form--span">Insira seu nome aqui!</span>
             <img class="login--border--login--form--img" src="assets/images/user-login-icon.svg">

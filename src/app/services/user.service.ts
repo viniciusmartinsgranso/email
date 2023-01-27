@@ -125,21 +125,19 @@ export class UserService {
 
     if (!storage.length) return false;
 
-    const loggedUser = storage.map(currentUser => {
-      if (currentUser.email === user.email && currentUser.password === user.password) {
-        return currentUser;
-      } else return [];
+    const loggedUser = storage.find(currentUser => {
+      return currentUser.email === user.email && currentUser.password === user.password;
     });
 
-    console.log(loggedUser.length);
-    console.log(loggedUser);
-    if (!loggedUser.length) return false;
+    if (!loggedUser) return false;
 
     localStorage.setItem('loggedUser', JSON.stringify(loggedUser));
+    console.log(localStorage.getItem('loggedUser'));
     return true;
   }
 
-  public logoutUser(): void {
+  public async logoutUser(): Promise<void> {
+    await this.router.navigateByUrl('/login#login');
     return localStorage.removeItem('loggedUser');
   }
 }
