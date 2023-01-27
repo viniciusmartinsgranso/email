@@ -77,7 +77,6 @@ export class UserService {
   public async delete(user: number): Promise<void> {
     const table = localStorage.getItem('users');
     const storage: UpdateUserPayload[] = table ? JSON.parse(table) : [];
-    console.log(storage);
 
     const newList = storage.filter((userStorage) => {
       if (userStorage.id !== user) {
@@ -85,7 +84,6 @@ export class UserService {
       } else return false;
     });
 
-    console.log(newList);
     storage.push(...newList);
     localStorage.setItem('users', JSON.stringify(newList));
     localStorage.removeItem('loggedUser');
@@ -125,7 +123,6 @@ export class UserService {
     const table = localStorage.getItem('users');
     const storage: LoginPayload[] = table ? JSON.parse(table) : false;
 
-    console.log(storage);
     if (!storage.length) return false;
 
     const loggedUser = storage.map(currentUser => {
