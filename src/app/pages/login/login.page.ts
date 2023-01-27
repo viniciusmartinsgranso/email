@@ -120,18 +120,19 @@ export class LoginPage {
   }
 
   public applyMask(phone: string): void {
-    const deveTerTracinho = phone.length >= 9;
+    const phoneVerifier = phone.length >= 9;
     this.registerPayload.phone = phone.replace(/\D/g, '')
-      .replace(/^([1-9]{1,2})([1-9]{0,5})([1-9]{0,4})/, deveTerTracinho ? '($1)$2-$3' : '($1)$2');
+      .replace(/^([1-9]{1,2})([1-9]{0,5})([1-9]{0,4})/, phoneVerifier ? '($1)$2-$3' : '($1)$2');
   }
 
   public verifyAt(email: string): void {
-    email.includes('@') ? this.autocompleteEmail = true : this.autocompleteEmail = false;
+    this.autocompleteEmail = email.includes('@');
     this.registerPayload.email = email;
   }
 
   public verifyConfirmAt(email: string): void {
     this.autocompleteConfirmEmail = email.includes('@');
+    this.registerPayload.confirmEmail = email;
   }
 
 }
