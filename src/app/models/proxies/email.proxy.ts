@@ -8,6 +8,7 @@ export interface EmailProxy {
   title: string;
   description: string;
   isImportant: boolean;
+  photoUrl?: string;
   copy?: UserProxy[];
   category?: SidebarEnum;
 }

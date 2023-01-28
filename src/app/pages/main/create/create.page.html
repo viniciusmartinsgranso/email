@@ -1,9 +1,28 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>create</ion-title>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-
-</ion-content>
+<div class="create">
+  <div class="create--send-to">
+    <span class="create--send-to--span">Para:</span>
+    <input [(ngModel)]="emailPayload.title" class="create--send-to--input" type="text" placeholder="Para:">
+  </div>
+  <div class="create--title">
+    <span class="create--title--span">Adicionar um assunto:</span>
+    <textarea [(ngModel)]="emailPayload.description" (ngModelChange)="resizeTextArea(textBorder)" #textBorder class="create--title--text-area" rows="4" wrap="hard" placeholder="Adicionar um assunto."></textarea>
+    <div class="create--title--archive">
+      <img [class.create--title--archive--img]="emailPayload.photoUrl" [src]="emailPayload.photoUrl">
+      <div class="create--title--archive--buttons">
+        <button class="create--title--archive--buttons--delete" *ngIf="emailPayload.photoUrl" (click)="deleteBase64()">
+          Excluir
+          <img src="assets/images/trash.svg">
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="create--buttons">
+    <button class="create--buttons--submit">Enviar</button>
+    <button class="create--buttons--cancel">Cancelar</button>
+    <div (click)="inputElement.click()" class="create--title--archive--buttons--new-image">
+      <label>Adicionar anexo</label>
+      <input #inputElement type="file" accept="image/png, image/jpg, image/jpeg" class="create--title--archive--button" (change)="getBase64($event)">
+      <img class="create--title--archive--buttons--new-image--clip" src="assets/images/archive-anex.svg">
+    </div>
+  </div>
+</div>
