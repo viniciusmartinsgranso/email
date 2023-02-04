@@ -34,6 +34,11 @@ export class UserService {
     return user ? JSON.parse(user) : false;
   }
 
+  public async getUsers(): Promise<UserProxy[]> {
+    const user = localStorage.getItem('users');
+    return user ? JSON.parse(user) : false;
+  }
+
   public async create(user: RegisterPayload): Promise<void> {
     localStorage.removeItem('loggedUser');
     const table = localStorage.getItem('users');

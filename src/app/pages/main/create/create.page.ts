@@ -1,7 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { text } from 'ionicons/icons';
 import { usersMock } from '../../../models/mocks/users.mock';
-import { EmailProxy } from '../../../models/proxies/email.proxy';
+import { CreateEmailPayload } from '../../../models/payloads/create-email.payload';
+import { LoginPayload } from '../../../models/payloads/login.payload';
+import { UserProxy } from '../../../models/proxies/user.proxy';
+import { EmailService } from '../../../services/email.service';
+import { UserService } from '../../../services/user.service';
 
 @Component({
   selector: 'app-create',
@@ -10,21 +13,40 @@ import { EmailProxy } from '../../../models/proxies/email.proxy';
 })
 export class CreatePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    private readonly emailService: EmailService,
+    private readonly userService: UserService,
+  ) {}
 
   @ViewChild('textBorder')
   public textBorder?: ElementRef<HTMLDivElement>;
 
-  public emailPayload: EmailProxy = {
+  public emailPayload: CreateEmailPayload = {
     id: 0,
     title: '',
     userWriter: usersMock[0],
     userReceiver: usersMock[0],
-    isImportant: true,
     description: '',
   };
 
-  ngOnInit() {
+  public user: UserProxy = {
+    email: '',
+    age: 0,
+    name: '',
+    phone: '',
+    id: 0,
+    photoUrl: '',
+    emailsReceived: [],
+    emailsPosted: []
+  };
+
+  public usersList: UserProxy[] = [];
+
+  public async ngOnInit(): Promise<void> {
+    await Promise.all([
+      this.getUser(),
+      this.getUsers(),
+    ])
   }
 
   public resizeTextArea(div: HTMLTextAreaElement): void {
@@ -35,7 +57,6 @@ export class CreatePage implements OnInit {
       const newHeight = div.scrollHeight + 'px';
       div.style.height = prevHeight;
       div.style.height = newHeight;
-      console.log('');
     }
   }
 
@@ -55,6 +76,20 @@ export class CreatePage implements OnInit {
 
   public deleteBase64(): void {
     this.emailPayload.photoUrl = undefined;
+  }
+
+  public async submitNewEmail(email: CreateEmailPayload): Promise<void> {
+    email.userWriter = this.user;
+    console.log(email.userReceiver);
+   // await this.emailService.create(email);
+  }
+
+  public async getUsers(): Promise<void> {
+    this.usersList = await this.userService.getUsers();
+  }
+
+  public async getUser(): Promise<void> {
+    this.user = await this.userService.get()
   }
 
 }
